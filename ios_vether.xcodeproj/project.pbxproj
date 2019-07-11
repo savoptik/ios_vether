@@ -7,20 +7,20 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		83BC3839C92EA1E4E6C212E3 /* Pods_ios_vether.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = CA44D93F51110D696067548C /* Pods_ios_vether.framework */; };
 		FE8FC70A22D799480076C726 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = FE8FC70922D799480076C726 /* AppDelegate.swift */; };
 		FE8FC70C22D799480076C726 /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = FE8FC70B22D799480076C726 /* ViewController.swift */; };
-		FE8FC70F22D799480076C726 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = FE8FC70D22D799480076C726 /* Main.storyboard */; };
 		FE8FC71122D7994B0076C726 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = FE8FC71022D7994B0076C726 /* Assets.xcassets */; };
-		FE8FC71422D7994B0076C726 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = FE8FC71222D7994B0076C726 /* LaunchScreen.storyboard */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		12BCFB8B725579BB3E080FEE /* Pods-ios_vether.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-ios_vether.debug.xcconfig"; path = "Target Support Files/Pods-ios_vether/Pods-ios_vether.debug.xcconfig"; sourceTree = "<group>"; };
+		244F04F7312C8D3E4333521E /* Pods-ios_vether.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-ios_vether.release.xcconfig"; path = "Target Support Files/Pods-ios_vether/Pods-ios_vether.release.xcconfig"; sourceTree = "<group>"; };
+		CA44D93F51110D696067548C /* Pods_ios_vether.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_ios_vether.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		FE8FC70622D799480076C726 /* ios_vether.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = ios_vether.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		FE8FC70922D799480076C726 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		FE8FC70B22D799480076C726 /* ViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewController.swift; sourceTree = "<group>"; };
-		FE8FC70E22D799480076C726 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
 		FE8FC71022D7994B0076C726 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
-		FE8FC71322D7994B0076C726 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		FE8FC71522D7994B0076C726 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
@@ -29,17 +29,38 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				83BC3839C92EA1E4E6C212E3 /* Pods_ios_vether.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		1910B6C57629F011C7C6AF8C /* Frameworks */ = {
+			isa = PBXGroup;
+			children = (
+				CA44D93F51110D696067548C /* Pods_ios_vether.framework */,
+			);
+			name = Frameworks;
+			sourceTree = "<group>";
+		};
+		C93585D880AC5629D6F8D5EA /* Pods */ = {
+			isa = PBXGroup;
+			children = (
+				12BCFB8B725579BB3E080FEE /* Pods-ios_vether.debug.xcconfig */,
+				244F04F7312C8D3E4333521E /* Pods-ios_vether.release.xcconfig */,
+			);
+			name = Pods;
+			path = Pods;
+			sourceTree = "<group>";
+		};
 		FE8FC6FD22D799480076C726 = {
 			isa = PBXGroup;
 			children = (
 				FE8FC70822D799480076C726 /* ios_vether */,
 				FE8FC70722D799480076C726 /* Products */,
+				C93585D880AC5629D6F8D5EA /* Pods */,
+				1910B6C57629F011C7C6AF8C /* Frameworks */,
 			);
 			sourceTree = "<group>";
 		};
@@ -56,9 +77,7 @@
 			children = (
 				FE8FC70922D799480076C726 /* AppDelegate.swift */,
 				FE8FC70B22D799480076C726 /* ViewController.swift */,
-				FE8FC70D22D799480076C726 /* Main.storyboard */,
 				FE8FC71022D7994B0076C726 /* Assets.xcassets */,
-				FE8FC71222D7994B0076C726 /* LaunchScreen.storyboard */,
 				FE8FC71522D7994B0076C726 /* Info.plist */,
 			);
 			path = ios_vether;
@@ -71,9 +90,11 @@
 			isa = PBXNativeTarget;
 			buildConfigurationList = FE8FC71822D7994B0076C726 /* Build configuration list for PBXNativeTarget "ios_vether" */;
 			buildPhases = (
+				315F25B4DB2EAB671AFC6E6D /* [CP] Check Pods Manifest.lock */,
 				FE8FC70222D799480076C726 /* Sources */,
 				FE8FC70322D799480076C726 /* Frameworks */,
 				FE8FC70422D799480076C726 /* Resources */,
+				C76CF5C25EFD4FB63DAB2A85 /* [CP] Embed Pods Frameworks */,
 			);
 			buildRules = (
 			);
@@ -122,13 +143,53 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				FE8FC71422D7994B0076C726 /* LaunchScreen.storyboard in Resources */,
 				FE8FC71122D7994B0076C726 /* Assets.xcassets in Resources */,
-				FE8FC70F22D799480076C726 /* Main.storyboard in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
 /* End PBXResourcesBuildPhase section */
+
+/* Begin PBXShellScriptBuildPhase section */
+		315F25B4DB2EAB671AFC6E6D /* [CP] Check Pods Manifest.lock */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputFileListPaths = (
+			);
+			inputPaths = (
+				"${PODS_PODFILE_DIR_PATH}/Podfile.lock",
+				"${PODS_ROOT}/Manifest.lock",
+			);
+			name = "[CP] Check Pods Manifest.lock";
+			outputFileListPaths = (
+			);
+			outputPaths = (
+				"$(DERIVED_FILE_DIR)/Pods-ios_vether-checkManifestLockResult.txt",
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "diff \"${PODS_PODFILE_DIR_PATH}/Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [ $? != 0 ] ; then\n    # print error to STDERR\n    echo \"error: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\" >&2\n    exit 1\nfi\n# This output is used by Xcode 'outputs' to avoid re-running this script phase.\necho \"SUCCESS\" > \"${SCRIPT_OUTPUT_FILE_0}\"\n";
+			showEnvVarsInLog = 0;
+		};
+		C76CF5C25EFD4FB63DAB2A85 /* [CP] Embed Pods Frameworks */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputFileListPaths = (
+				"${PODS_ROOT}/Target Support Files/Pods-ios_vether/Pods-ios_vether-frameworks-${CONFIGURATION}-input-files.xcfilelist",
+			);
+			name = "[CP] Embed Pods Frameworks";
+			outputFileListPaths = (
+				"${PODS_ROOT}/Target Support Files/Pods-ios_vether/Pods-ios_vether-frameworks-${CONFIGURATION}-output-files.xcfilelist",
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "\"${PODS_ROOT}/Target Support Files/Pods-ios_vether/Pods-ios_vether-frameworks.sh\"\n";
+			showEnvVarsInLog = 0;
+		};
+/* End PBXShellScriptBuildPhase section */
 
 /* Begin PBXSourcesBuildPhase section */
 		FE8FC70222D799480076C726 /* Sources */ = {
@@ -141,25 +202,6 @@
 			runOnlyForDeploymentPostprocessing = 0;
 		};
 /* End PBXSourcesBuildPhase section */
-
-/* Begin PBXVariantGroup section */
-		FE8FC70D22D799480076C726 /* Main.storyboard */ = {
-			isa = PBXVariantGroup;
-			children = (
-				FE8FC70E22D799480076C726 /* Base */,
-			);
-			name = Main.storyboard;
-			sourceTree = "<group>";
-		};
-		FE8FC71222D7994B0076C726 /* LaunchScreen.storyboard */ = {
-			isa = PBXVariantGroup;
-			children = (
-				FE8FC71322D7994B0076C726 /* Base */,
-			);
-			name = LaunchScreen.storyboard;
-			sourceTree = "<group>";
-		};
-/* End PBXVariantGroup section */
 
 /* Begin XCBuildConfiguration section */
 		FE8FC71622D7994B0076C726 /* Debug */ = {
@@ -280,6 +322,7 @@
 		};
 		FE8FC71922D7994B0076C726 /* Debug */ = {
 			isa = XCBuildConfiguration;
+			baseConfigurationReference = 12BCFB8B725579BB3E080FEE /* Pods-ios_vether.debug.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CODE_SIGN_STYLE = Automatic;
@@ -298,6 +341,7 @@
 		};
 		FE8FC71A22D7994B0076C726 /* Release */ = {
 			isa = XCBuildConfiguration;
+			baseConfigurationReference = 244F04F7312C8D3E4333521E /* Pods-ios_vether.release.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CODE_SIGN_STYLE = Automatic;
