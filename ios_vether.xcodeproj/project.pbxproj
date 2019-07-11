@@ -3,7 +3,7 @@
 	archiveVersion = 1;
 	classes = {
 	};
-	objectVersion = 50;
+	objectVersion = 51;
 	objects = {
 
 /* Begin PBXBuildFile section */
@@ -11,6 +11,7 @@
 		FE8FC70A22D799480076C726 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = FE8FC70922D799480076C726 /* AppDelegate.swift */; };
 		FE8FC70C22D799480076C726 /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = FE8FC70B22D799480076C726 /* ViewController.swift */; };
 		FE8FC71122D7994B0076C726 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = FE8FC71022D7994B0076C726 /* Assets.xcassets */; };
+		FEBC210622D7ADB4000A6623 /* README.md in Resources */ = {isa = PBXBuildFile; fileRef = FEBC210522D7ADB4000A6623 /* README.md */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -22,6 +23,7 @@
 		FE8FC70B22D799480076C726 /* ViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewController.swift; sourceTree = "<group>"; };
 		FE8FC71022D7994B0076C726 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		FE8FC71522D7994B0076C726 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		FEBC210522D7ADB4000A6623 /* README.md */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = net.daringfireball.markdown; path = README.md; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -50,13 +52,13 @@
 				12BCFB8B725579BB3E080FEE /* Pods-ios_vether.debug.xcconfig */,
 				244F04F7312C8D3E4333521E /* Pods-ios_vether.release.xcconfig */,
 			);
-			name = Pods;
 			path = Pods;
 			sourceTree = "<group>";
 		};
 		FE8FC6FD22D799480076C726 = {
 			isa = PBXGroup;
 			children = (
+				FEBC210522D7ADB4000A6623 /* README.md */,
 				FE8FC70822D799480076C726 /* ios_vether */,
 				FE8FC70722D799480076C726 /* Products */,
 				C93585D880AC5629D6F8D5EA /* Pods */,
@@ -76,11 +78,19 @@
 			isa = PBXGroup;
 			children = (
 				FE8FC70922D799480076C726 /* AppDelegate.swift */,
-				FE8FC70B22D799480076C726 /* ViewController.swift */,
+				FEBC210722D7AEB3000A6623 /* GUI */,
 				FE8FC71022D7994B0076C726 /* Assets.xcassets */,
 				FE8FC71522D7994B0076C726 /* Info.plist */,
 			);
 			path = ios_vether;
+			sourceTree = "<group>";
+		};
+		FEBC210722D7AEB3000A6623 /* GUI */ = {
+			isa = PBXGroup;
+			children = (
+				FE8FC70B22D799480076C726 /* ViewController.swift */,
+			);
+			path = GUI;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -117,6 +127,7 @@
 				TargetAttributes = {
 					FE8FC70522D799480076C726 = {
 						CreatedOnToolsVersion = 10.0;
+						LastSwiftMigration = 1020;
 					};
 				};
 			};
@@ -143,6 +154,7 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				FEBC210622D7ADB4000A6623 /* README.md in Resources */,
 				FE8FC71122D7994B0076C726 /* Assets.xcassets in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -334,7 +346,7 @@
 				);
 				PRODUCT_BUNDLE_IDENTIFIER = "Artem-Semenov.ios-vether";
 				PRODUCT_NAME = "$(TARGET_NAME)";
-				SWIFT_VERSION = 4.2;
+				SWIFT_VERSION = 5.0;
 				TARGETED_DEVICE_FAMILY = "1,2";
 			};
 			name = Debug;
@@ -353,7 +365,7 @@
 				);
 				PRODUCT_BUNDLE_IDENTIFIER = "Artem-Semenov.ios-vether";
 				PRODUCT_NAME = "$(TARGET_NAME)";
-				SWIFT_VERSION = 4.2;
+				SWIFT_VERSION = 5.0;
 				TARGETED_DEVICE_FAMILY = "1,2";
 			};
 			name = Release;
