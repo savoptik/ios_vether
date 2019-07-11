@@ -5,3 +5,6 @@
   Created by Артём Семёнов on 12.07.2019.
   Copyright © 2019 Артём Семёнов. All rights reserved.
 */
+
+"map" = "Map";
+"list" = "List";

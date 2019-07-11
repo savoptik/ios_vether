@@ -13,8 +13,13 @@ class ViewController: UITabBarController {
     override func viewDidLoad() {
         super.viewDidLoad()
         let map = UINavigationController.init()
+        map.title = NSLocalizedString("map", comment: "")
         map.addChild(MapTab.init())
-        self.setViewControllers([map, ListTab.init()], animated: true)
+        let list = ListTab.init()
+        let listNavigation = UINavigationController.init()
+        listNavigation.title = NSLocalizedString("list", comment: "")
+        listNavigation.addChild(list)
+        self.setViewControllers([map, listNavigation], animated: true)
         // Do any additional setup after loading the view, typically from a nib.
     }
 
