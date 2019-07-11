@@ -8,6 +8,10 @@
 
 /* Begin PBXBuildFile section */
 		83BC3839C92EA1E4E6C212E3 /* Pods_ios_vether.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = CA44D93F51110D696067548C /* Pods_ios_vether.framework */; };
+		FE59FFC022D7D78C007F2205 /* MapTab.swift in Sources */ = {isa = PBXBuildFile; fileRef = FE59FFBF22D7D78C007F2205 /* MapTab.swift */; };
+		FE59FFC222D7D7D8007F2205 /* ListTab.swift in Sources */ = {isa = PBXBuildFile; fileRef = FE59FFC122D7D7D7007F2205 /* ListTab.swift */; };
+		FE59FFC822D7E1A3007F2205 /* InfoPlist.strings in Resources */ = {isa = PBXBuildFile; fileRef = FE59FFC622D7E1A3007F2205 /* InfoPlist.strings */; };
+		FE59FFCB22D7E1DB007F2205 /* Localizable.strings in Resources */ = {isa = PBXBuildFile; fileRef = FE59FFC922D7E1DB007F2205 /* Localizable.strings */; };
 		FE8FC70A22D799480076C726 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = FE8FC70922D799480076C726 /* AppDelegate.swift */; };
 		FE8FC70C22D799480076C726 /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = FE8FC70B22D799480076C726 /* ViewController.swift */; };
 		FE8FC71122D7994B0076C726 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = FE8FC71022D7994B0076C726 /* Assets.xcassets */; };
@@ -18,6 +22,10 @@
 		12BCFB8B725579BB3E080FEE /* Pods-ios_vether.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-ios_vether.debug.xcconfig"; path = "Target Support Files/Pods-ios_vether/Pods-ios_vether.debug.xcconfig"; sourceTree = "<group>"; };
 		244F04F7312C8D3E4333521E /* Pods-ios_vether.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-ios_vether.release.xcconfig"; path = "Target Support Files/Pods-ios_vether/Pods-ios_vether.release.xcconfig"; sourceTree = "<group>"; };
 		CA44D93F51110D696067548C /* Pods_ios_vether.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_ios_vether.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		FE59FFBF22D7D78C007F2205 /* MapTab.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MapTab.swift; sourceTree = "<group>"; };
+		FE59FFC122D7D7D7007F2205 /* ListTab.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ListTab.swift; sourceTree = "<group>"; };
+		FE59FFC722D7E1A3007F2205 /* Base */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = Base; path = InfoPlist.strings; sourceTree = "<group>"; };
+		FE59FFCA22D7E1DB007F2205 /* Base */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = Base; path = Localizable.strings; sourceTree = "<group>"; };
 		FE8FC70622D799480076C726 /* ios_vether.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = ios_vether.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		FE8FC70922D799480076C726 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		FE8FC70B22D799480076C726 /* ViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewController.swift; sourceTree = "<group>"; };
@@ -55,6 +63,15 @@
 			path = Pods;
 			sourceTree = "<group>";
 		};
+		FE59FFC522D7E0F9007F2205 /* Base.lproj */ = {
+			isa = PBXGroup;
+			children = (
+				FE59FFC622D7E1A3007F2205 /* InfoPlist.strings */,
+				FE59FFC922D7E1DB007F2205 /* Localizable.strings */,
+			);
+			path = Base.lproj;
+			sourceTree = "<group>";
+		};
 		FE8FC6FD22D799480076C726 = {
 			isa = PBXGroup;
 			children = (
@@ -77,6 +94,7 @@
 		FE8FC70822D799480076C726 /* ios_vether */ = {
 			isa = PBXGroup;
 			children = (
+				FE59FFC522D7E0F9007F2205 /* Base.lproj */,
 				FE8FC70922D799480076C726 /* AppDelegate.swift */,
 				FEBC210722D7AEB3000A6623 /* GUI */,
 				FE8FC71022D7994B0076C726 /* Assets.xcassets */,
@@ -89,6 +107,8 @@
 			isa = PBXGroup;
 			children = (
 				FE8FC70B22D799480076C726 /* ViewController.swift */,
+				FE59FFBF22D7D78C007F2205 /* MapTab.swift */,
+				FE59FFC122D7D7D7007F2205 /* ListTab.swift */,
 			);
 			path = GUI;
 			sourceTree = "<group>";
@@ -136,7 +156,6 @@
 			developmentRegion = en;
 			hasScannedForEncodings = 0;
 			knownRegions = (
-				en,
 				Base,
 			);
 			mainGroup = FE8FC6FD22D799480076C726;
@@ -155,6 +174,8 @@
 			buildActionMask = 2147483647;
 			files = (
 				FEBC210622D7ADB4000A6623 /* README.md in Resources */,
+				FE59FFCB22D7E1DB007F2205 /* Localizable.strings in Resources */,
+				FE59FFC822D7E1A3007F2205 /* InfoPlist.strings in Resources */,
 				FE8FC71122D7994B0076C726 /* Assets.xcassets in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -209,11 +230,32 @@
 			buildActionMask = 2147483647;
 			files = (
 				FE8FC70C22D799480076C726 /* ViewController.swift in Sources */,
+				FE59FFC022D7D78C007F2205 /* MapTab.swift in Sources */,
 				FE8FC70A22D799480076C726 /* AppDelegate.swift in Sources */,
+				FE59FFC222D7D7D8007F2205 /* ListTab.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
 /* End PBXSourcesBuildPhase section */
+
+/* Begin PBXVariantGroup section */
+		FE59FFC622D7E1A3007F2205 /* InfoPlist.strings */ = {
+			isa = PBXVariantGroup;
+			children = (
+				FE59FFC722D7E1A3007F2205 /* Base */,
+			);
+			name = InfoPlist.strings;
+			sourceTree = "<group>";
+		};
+		FE59FFC922D7E1DB007F2205 /* Localizable.strings */ = {
+			isa = PBXVariantGroup;
+			children = (
+				FE59FFCA22D7E1DB007F2205 /* Base */,
+			);
+			name = Localizable.strings;
+			sourceTree = "<group>";
+		};
+/* End PBXVariantGroup section */
 
 /* Begin XCBuildConfiguration section */
 		FE8FC71622D7994B0076C726 /* Debug */ = {
@@ -267,7 +309,7 @@
 				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
 				GCC_WARN_UNUSED_FUNCTION = YES;
 				GCC_WARN_UNUSED_VARIABLE = YES;
-				IPHONEOS_DEPLOYMENT_TARGET = 12.0;
+				IPHONEOS_DEPLOYMENT_TARGET = 13.0;
 				MTL_ENABLE_DEBUG_INFO = INCLUDE_SOURCE;
 				MTL_FAST_MATH = YES;
 				ONLY_ACTIVE_ARCH = YES;
@@ -322,7 +364,7 @@
 				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
 				GCC_WARN_UNUSED_FUNCTION = YES;
 				GCC_WARN_UNUSED_VARIABLE = YES;
-				IPHONEOS_DEPLOYMENT_TARGET = 12.0;
+				IPHONEOS_DEPLOYMENT_TARGET = 13.0;
 				MTL_ENABLE_DEBUG_INFO = NO;
 				MTL_FAST_MATH = YES;
 				SDKROOT = iphoneos;
@@ -340,11 +382,12 @@
 				CODE_SIGN_STYLE = Automatic;
 				DEVELOPMENT_TEAM = 3KRK236DU7;
 				INFOPLIST_FILE = ios_vether/Info.plist;
+				IPHONEOS_DEPLOYMENT_TARGET = 13.0;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",
 				);
-				PRODUCT_BUNDLE_IDENTIFIER = "Artem-Semenov.ios-vether";
+				PRODUCT_BUNDLE_IDENTIFIER = "Artem-Semenov1.ios-vether";
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_VERSION = 5.0;
 				TARGETED_DEVICE_FAMILY = "1,2";
@@ -359,11 +402,12 @@
 				CODE_SIGN_STYLE = Automatic;
 				DEVELOPMENT_TEAM = 3KRK236DU7;
 				INFOPLIST_FILE = ios_vether/Info.plist;
+				IPHONEOS_DEPLOYMENT_TARGET = 13.0;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",
 				);
-				PRODUCT_BUNDLE_IDENTIFIER = "Artem-Semenov.ios-vether";
+				PRODUCT_BUNDLE_IDENTIFIER = "Artem-Semenov1.ios-vether";
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_VERSION = 5.0;
 				TARGETED_DEVICE_FAMILY = "1,2";
