@@ -8,9 +8,11 @@
 
 import UIKit
 import MapKit
+import CoreLocation
 
-class MapTab: UIViewController {
+class MapTab: UIViewController, CLLocationManagerDelegate, MKMapViewDelegate {
     let mapView = MKMapView.init()
+    var locationManager = CLLocationManager()
 
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -18,18 +20,37 @@ class MapTab: UIViewController {
         self.view.addSubview(self.mapView)
         let constr = [self.view.safeAreaLayoutGuide.topAnchor.constraint(equalToSystemSpacingBelow: self.mapView.topAnchor, multiplier: 1), self.view.safeAreaLayoutGuide.bottomAnchor.constraint(equalToSystemSpacingBelow: self.mapView.bottomAnchor, multiplier: 1), self.view.safeAreaLayoutGuide.leftAnchor.constraint(equalToSystemSpacingAfter: self.mapView.leftAnchor, multiplier: 1), self.view.safeAreaLayoutGuide.rightAnchor.constraint(equalToSystemSpacingAfter: self.mapView.rightAnchor, multiplier: 1)] // задаём размеры
         NSLayoutConstraint.activate(constr) // расчитываем констрейны
-        // Do any additional setup after loading the view.
+        if  CLLocationManager.locationServicesEnabled() {
+            self.locationManager = CLLocationManager()
+            self.locationManager.delegate = self
+            self.locationManager.desiredAccuracy = kCLLocationAccuracyBest
+            self.locationManager.requestAlwaysAuthorization()
+            self.locationManager.requestWhenInUseAuthorization()
+            self.locationManager.startUpdatingHeading()
+        }
+        self.mapView.delegate = self
+        self.mapView.mapType = .standard
+        self.mapView.isZoomEnabled = true
+        self.mapView.isScrollEnabled = true
+        if let coor = mapView.userLocation.location?.coordinate{
+            mapView.setCenter(coor, animated: true)
     }
-    
-
-    /*
-    // MARK: - Navigation
-
-    // In a storyboard-based application, you will often want to do a little preparation before navigation
-    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
-        // Get the new view controller using segue.destination.
-        // Pass the selected object to the new view controller.
     }
-    */
 
+    func locationManager(_ manager: CLLocationManager, didUpdateLocations locations: [CLLocation]) {
+        let locValue:CLLocationCoordinate2D = manager.location!.coordinate
+        
+        self.mapView.mapType = MKMapType.standard
+        
+        let span = MKCoordinateSpan(latitudeDelta: 0.05, longitudeDelta: 0.05)
+        let region = MKCoordinateRegion(center: locValue, span: span)
+        self.mapView.setRegion(region, animated: true)
+        let annotation = MKPointAnnotation()
+        annotation.coordinate = locValue
+        annotation.title = "Javed Multani"
+        annotation.subtitle = "current location"
+        self.mapView.addAnnotation(annotation)
+        
+        //centerMap(locValue)
+    }
 }
