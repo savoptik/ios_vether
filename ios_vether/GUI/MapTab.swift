@@ -38,7 +38,9 @@ class MapTab: UIViewController, CLLocationManagerDelegate, MKMapViewDelegate {
         print("\(self.mapView.userLocation.isUpdating)")
         if let coor = self.locationManager.location?.coordinate {
             print("test 4")
+            let regen = MKCoordinateRegion.init(center: coor, span: .init(latitudeDelta: 0.5, longitudeDelta: 0.5))
             mapView.setCenter(coor, animated: true)
+            self.mapView.setRegion(regen, animated: true)
                 let geocoder = CLGeocoder()
                 // Look up the location and pass it to the completion handler
                 geocoder.reverseGeocodeLocation(self.locationManager.location!,
