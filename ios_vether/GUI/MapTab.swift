@@ -50,31 +50,31 @@ class MapTab: UIViewController, CLLocationManagerDelegate, MKMapViewDelegate {
     }
 
     func searchTown() {
-            let searchRequest = MKLocalSearch.Request()
-        searchRequest.naturalLanguageQuery = "городское поселение"
-        let region = self.mapView.region
-            searchRequest.region = region
-        // Use the network activity indicator as a hint to the user that a search is in progress.
-        UIApplication.shared.isNetworkActivityIndicatorVisible = true
-        
-        let localSearch = MKLocalSearch(request: searchRequest)
-        localSearch.start { (response, error) in
-            guard error == nil else {
-                return
-            }
-            self.matchingItems = response!.mapItems
-
-            UIApplication.shared.isNetworkActivityIndicatorVisible = false
-            print("Найдено городов \(self.matchingItems.count)")
-                for it in self.matchingItems {
-                print("город \(it.placemark.title!)")
+        let startH = Double(self.currantLocation.coordinate.latitude) - 1
+        let lasth = (self.currantLocation.coordinate.latitude) + 1
+        let startV = Double(self.currantLocation.coordinate.longitude) - 1
+        let lastV = Double(self.currantLocation.coordinate.longitude) + 1
+        var towns: [CLPlacemark] = []
+        var locations: [CLLocation] = []
+        for i in stride(from: startV, to: lastV, by: 0.01) {
+            for j in stride(from: startH, to: lasth, by: 0.01) {
+                locations.append(CLLocation.init(latitude: i, longitude: j))
             }
         }
+        let geocoder = CLGeocoder.init()
+        let mark = geocoder.reverseGeocodeLocation(locations,
+                                                   completionHandler: { (placemarks, error) in
+                                                    if error == nil {
+                                                        if !towns.contains(placemarks![0]) {
+                                                            towns.append(placemarks![0])
+                                                        }
+                                                    }
+        })
+        print("Найдено \(towns.count) адресов")
     }
 
     func coordinateToMapItom() -> CLPlacemark? {
         let geocoder = CLGeocoder()
-        var retMark: CLPlacemark?
         geocoder.reverseGeocodeLocation(self.currantLocation,
                                         completionHandler: { (placemarks, error) in
                                             if error == nil {
