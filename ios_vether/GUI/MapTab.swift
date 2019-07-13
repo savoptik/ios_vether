@@ -45,22 +45,31 @@ class MapTab: UIViewController, CLLocationManagerDelegate, MKMapViewDelegate {
             centerPin.isAccessibilityElement = true
             self.mapView.addAnnotation(centerPin)
             self.currantLocation = CLLocation.init(coordinate: coor, altitude: self.locationManager.location!.altitude, horizontalAccuracy: self.locationManager.location!.horizontalAccuracy, verticalAccuracy: self.locationManager.location!.verticalAccuracy, timestamp: self.locationManager.location!.timestamp)
-            self.coordinateToMapItom()
+            self.searchTown()
     }
     }
 
     func searchTown() {
-            let request = MKLocalSearch.Request()
-        request.naturalLanguageQuery = "город"
-        request.region = MKCoordinateRegion.init(center: self.currantLocation.coordinate, span: .init(latitudeDelta: 0.5, longitudeDelta: 0.5))
-            let search = MKLocalSearch(request: request)
-        search.start(completionHandler: { response, _ in
-            guard let response = response else {
+            let searchRequest = MKLocalSearch.Request()
+        searchRequest.naturalLanguageQuery = "городское поселение"
+        let region = self.mapView.region
+            searchRequest.region = region
+        // Use the network activity indicator as a hint to the user that a search is in progress.
+        UIApplication.shared.isNetworkActivityIndicatorVisible = true
+        
+        let localSearch = MKLocalSearch(request: searchRequest)
+        localSearch.start { (response, error) in
+            guard error == nil else {
                 return
             }
-            self.matchingItems = response.mapItems
-        })
-        print("Количество найденных городов \(self.matchingItems.count)")
+            self.matchingItems = response!.mapItems
+
+            UIApplication.shared.isNetworkActivityIndicatorVisible = false
+            print("Найдено городов \(self.matchingItems.count)")
+                for it in self.matchingItems {
+                print("город \(it.placemark.title!)")
+            }
+        }
     }
 
     func coordinateToMapItom() -> CLPlacemark? {
