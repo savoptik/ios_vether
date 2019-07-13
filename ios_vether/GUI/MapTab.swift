@@ -12,8 +12,10 @@ import CoreLocation
 
 class MapTab: UIViewController, CLLocationManagerDelegate, MKMapViewDelegate {
     let mapView = MKMapView.init()
+
     var locationManager = CLLocationManager()
     var matchingItems: [MKMapItem] = []
+    var currantLocation = CLLocation.init()
 
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -21,24 +23,19 @@ class MapTab: UIViewController, CLLocationManagerDelegate, MKMapViewDelegate {
         self.view.addSubview(self.mapView)
         let constr = [self.view.safeAreaLayoutGuide.topAnchor.constraint(equalToSystemSpacingBelow: self.mapView.topAnchor, multiplier: 1), self.view.safeAreaLayoutGuide.bottomAnchor.constraint(equalToSystemSpacingBelow: self.mapView.bottomAnchor, multiplier: 1), self.view.safeAreaLayoutGuide.leftAnchor.constraint(equalToSystemSpacingAfter: self.mapView.leftAnchor, multiplier: 1), self.view.safeAreaLayoutGuide.rightAnchor.constraint(equalToSystemSpacingAfter: self.mapView.rightAnchor, multiplier: 1)] // задаём размеры
         NSLayoutConstraint.activate(constr) // расчитываем констрейны
-        print("test 1")
         if  CLLocationManager.locationServicesEnabled() {
-            print("test 2")
             self.locationManager = CLLocationManager()
             self.locationManager.delegate = self
             self.locationManager.desiredAccuracy = kCLLocationAccuracyBest
             self.locationManager.requestAlwaysAuthorization()
             self.locationManager.requestWhenInUseAuthorization()
             self.locationManager.startUpdatingHeading()
-            print("test 3")
         }
         self.mapView.delegate = self
         self.mapView.mapType = .standard
         self.mapView.isZoomEnabled = true
         self.mapView.isScrollEnabled = true
-        print("\(self.mapView.userLocation.isUpdating)")
         if let coor = self.locationManager.location?.coordinate {
-            print("test 4")
             let regen = MKCoordinateRegion.init(center: coor, span: .init(latitudeDelta: 0.5, longitudeDelta: 0.5))
             mapView.setCenter(coor, animated: true)
             self.mapView.setRegion(regen, animated: true)
@@ -47,35 +44,37 @@ class MapTab: UIViewController, CLLocationManagerDelegate, MKMapViewDelegate {
             centerPin.title = NSLocalizedString("Change localisation", comment: "")
             centerPin.isAccessibilityElement = true
             self.mapView.addAnnotation(centerPin)
-                let geocoder = CLGeocoder()
-                geocoder.reverseGeocodeLocation(self.locationManager.location!,
-                                                completionHandler: { (placemarks, error) in
-                                                    if error == nil {
-                                                        let firstLocation = placemarks?[0]
-                                                        print("\(firstLocation)")
-                                                    }
-                })
-            self.searchTown()
-            for it in self.matchingItems {
-                print("\(it.name!)")
-            }
-            print("\(self.matchingItems.count)")
+            self.currantLocation = CLLocation.init(coordinate: coor, altitude: self.locationManager.location!.altitude, horizontalAccuracy: self.locationManager.location!.horizontalAccuracy, verticalAccuracy: self.locationManager.location!.verticalAccuracy, timestamp: self.locationManager.location!.timestamp)
+            self.coordinateToMapItom()
     }
     }
 
     func searchTown() {
-        print("test 5")
             let request = MKLocalSearch.Request()
-        request.naturalLanguageQuery = "city"
-        request.region = self.mapView.region
+        request.naturalLanguageQuery = "город"
+        request.region = MKCoordinateRegion.init(center: self.currantLocation.coordinate, span: .init(latitudeDelta: 0.5, longitudeDelta: 0.5))
             let search = MKLocalSearch(request: request)
         search.start(completionHandler: { response, _ in
             guard let response = response else {
                 return
             }
-            print("test 6")
             self.matchingItems = response.mapItems
         })
+        print("Количество найденных городов \(self.matchingItems.count)")
     }
-    
+
+    func coordinateToMapItom() -> CLPlacemark? {
+        let geocoder = CLGeocoder()
+        var retMark: CLPlacemark?
+        geocoder.reverseGeocodeLocation(self.currantLocation,
+                                        completionHandler: { (placemarks, error) in
+                                            if error == nil {
+                                                retMark = placemarks?[0]
+                                                print("Текущий город \(retMark?.administrativeArea!)")
+                                            }
+        })
+        self.searchTown()
+        return retMark
+    }
 }
+
