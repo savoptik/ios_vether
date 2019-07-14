@@ -16,6 +16,12 @@ class MapTab: UIViewController, CLLocationManagerDelegate, MKMapViewDelegate {
     var locationManager = CLLocationManager()
     var matchingItems: [MKMapItem] = []
     var currantLocation = CLLocation.init()
+    let searchQueueName = "search queue"
+    let searchQueue: DispatchQueue = {
+        let searchQueue = DispatchQueue.init(label: "search queue")
+        return searchQueue
+    }()
+    let  myGroup = DispatchGroup()
 
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -44,46 +50,85 @@ class MapTab: UIViewController, CLLocationManagerDelegate, MKMapViewDelegate {
             centerPin.title = NSLocalizedString("Change localisation", comment: "")
             centerPin.isAccessibilityElement = true
             self.mapView.addAnnotation(centerPin)
-            self.currantLocation = CLLocation.init(coordinate: coor, altitude: self.locationManager.location!.altitude, horizontalAccuracy: self.locationManager.location!.horizontalAccuracy, verticalAccuracy: self.locationManager.location!.verticalAccuracy, timestamp: self.locationManager.location!.timestamp)
-            self.searchTown()
+            self.currantLocation = CLLocation.init(latitude: coor.latitude, longitude: coor.longitude)
+            self.searchQueue.sync {
+                self.searchTowns(location: self.currantLocation)
+            }
+            print("итого \(self.matchingItems.count)")
     }
     }
 
-    func searchTown() {
-        let startH = Double(self.currantLocation.coordinate.latitude) - 1
-        let lasth = (self.currantLocation.coordinate.latitude) + 1
-        let startV = Double(self.currantLocation.coordinate.longitude) - 1
-        let lastV = Double(self.currantLocation.coordinate.longitude) + 1
-        var towns: [CLPlacemark] = []
-        var locations: [CLLocation] = []
-        for i in stride(from: startV, to: lastV, by: 0.01) {
-            for j in stride(from: startH, to: lasth, by: 0.01) {
-                locations.append(CLLocation.init(latitude: i, longitude: j))
+    func searchPostal(mark: CLPlacemark) {
+            let searchRequest = MKLocalSearch.Request()
+        searchRequest.naturalLanguageQuery = "34"
+        let region = MKCoordinateRegion.init(center: self.currantLocation.coordinate, latitudinalMeters: 10000, longitudinalMeters: 10000)
+            searchRequest.region = region
+        let localSearch = MKLocalSearch(request: searchRequest)
+        localSearch.start { (response, error) in
+            self.searchQueue.sync {
+                self.myGroup.enter()
+                guard error == nil else {
+                    self.myGroup.leave()
+                    return
+                }
+                let timeList = response!.mapItems
+                for it in timeList {
+                    if Double(it.placemark.coordinate.latitude) >= Double(self.currantLocation.coordinate.latitude) - 5 {
+                        if Double(it.placemark.coordinate.latitude) <= Double(self.currantLocation.coordinate.latitude) + 5 {
+                            if Double(it.placemark.coordinate.longitude) >= Double(self.currantLocation.coordinate.longitude) - 5 {
+                                if Double(it.placemark.coordinate.longitude) <= Double(self.currantLocation.coordinate.longitude) + 5 {
+                                    let semaphore = DispatchSemaphore(value: 1)
+                                    var flag = 0
+                                    DispatchQueue.global().async {
+                                        semaphore.wait()
+                                        
+                                        for s in self.matchingItems {
+                                            if let hs = s.placemark.postalCode {
+                                                if let ts = it.placemark.postalCode {
+                                                    if ts == hs {
+                                                        print("\(ts)")
+                                                        flag = 1
+                                                    }
+                                                } else {
+                                                    flag = 1
+                                                }
+                                            } else {
+                                                flag += 1
+                                            }
+                                        }
+                                        
+                                        if flag == 0 {
+                                            self.matchingItems.append(it)
+                                        }
+                                        
+                                        semaphore.signal()
+                                        self.searchQueue.sync {self.searchPostal(mark: it.placemark)}
+                                    }
+                                }
+                            }
+                        }
+                    }
+                }
+                print("в основном массиве \(self.matchingItems.count) элементов")
+                self.myGroup.leave()
             }
         }
-        let geocoder = CLGeocoder.init()
-        let mark = geocoder.reverseGeocodeLocation(locations,
-                                                   completionHandler: { (placemarks, error) in
-                                                    if error == nil {
-                                                        if !towns.contains(placemarks![0]) {
-                                                            towns.append(placemarks![0])
-                                                        }
-                                                    }
-        })
-        print("Найдено \(towns.count) адресов")
     }
 
-    func coordinateToMapItom() -> CLPlacemark? {
+    func searchTowns(location: CLLocation){
         let geocoder = CLGeocoder()
+        var retMark: CLPlacemark?
         geocoder.reverseGeocodeLocation(self.currantLocation,
-                                        completionHandler: { (placemarks, error) in
+                                        completionHandler: { (placemarks, error) in self.searchQueue.async {
                                             if error == nil {
                                                 retMark = placemarks?[0]
-                                                print("Текущий город \(retMark?.administrativeArea!)")
                                             }
+                                            self.searchQueue.sync {
+                                                self.searchPostal(mark: retMark!)
+                                            }
+                                        }
+                                            print("итого \(self.matchingItems.count)")
         })
-        self.searchTown()
-        return retMark
     }
 }
 
