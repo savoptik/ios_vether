@@ -8,6 +8,7 @@
 
 /* Begin PBXBuildFile section */
 		83BC3839C92EA1E4E6C212E3 /* Pods_ios_vether.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = CA44D93F51110D696067548C /* Pods_ios_vether.framework */; };
+		FE26E21822DBBA9400959305 /* WeatherManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = FE26E21722DBBA9400959305 /* WeatherManager.swift */; };
 		FE59FFC022D7D78C007F2205 /* MapTab.swift in Sources */ = {isa = PBXBuildFile; fileRef = FE59FFBF22D7D78C007F2205 /* MapTab.swift */; };
 		FE59FFC222D7D7D8007F2205 /* ListTab.swift in Sources */ = {isa = PBXBuildFile; fileRef = FE59FFC122D7D7D7007F2205 /* ListTab.swift */; };
 		FE59FFC822D7E1A3007F2205 /* InfoPlist.strings in Resources */ = {isa = PBXBuildFile; fileRef = FE59FFC622D7E1A3007F2205 /* InfoPlist.strings */; };
@@ -23,10 +24,12 @@
 		12BCFB8B725579BB3E080FEE /* Pods-ios_vether.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-ios_vether.debug.xcconfig"; path = "Target Support Files/Pods-ios_vether/Pods-ios_vether.debug.xcconfig"; sourceTree = "<group>"; };
 		244F04F7312C8D3E4333521E /* Pods-ios_vether.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-ios_vether.release.xcconfig"; path = "Target Support Files/Pods-ios_vether/Pods-ios_vether.release.xcconfig"; sourceTree = "<group>"; };
 		CA44D93F51110D696067548C /* Pods_ios_vether.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_ios_vether.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		FE26E21722DBBA9400959305 /* WeatherManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WeatherManager.swift; sourceTree = "<group>"; };
 		FE59FFBF22D7D78C007F2205 /* MapTab.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MapTab.swift; sourceTree = "<group>"; };
 		FE59FFC122D7D7D7007F2205 /* ListTab.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ListTab.swift; sourceTree = "<group>"; };
 		FE59FFC722D7E1A3007F2205 /* Base */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = Base; path = InfoPlist.strings; sourceTree = "<group>"; };
 		FE59FFCA22D7E1DB007F2205 /* Base */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = Base; path = Localizable.strings; sourceTree = "<group>"; };
+		FE74402F22DB9265001D5949 /* AFNetworking.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = AFNetworking.framework; sourceTree = "<group>"; };
 		FE8FC70622D799480076C726 /* ios_vether.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = ios_vether.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		FE8FC70922D799480076C726 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		FE8FC70B22D799480076C726 /* ViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewController.swift; sourceTree = "<group>"; };
@@ -52,6 +55,7 @@
 		1910B6C57629F011C7C6AF8C /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
+				FE74402F22DB9265001D5949 /* AFNetworking.framework */,
 				FEABB8BF22D8786F001F28D3 /* MapKit.framework */,
 				CA44D93F51110D696067548C /* Pods_ios_vether.framework */,
 			);
@@ -65,6 +69,14 @@
 				244F04F7312C8D3E4333521E /* Pods-ios_vether.release.xcconfig */,
 			);
 			path = Pods;
+			sourceTree = "<group>";
+		};
+		FE26E21622DBBA5200959305 /* Utilitys */ = {
+			isa = PBXGroup;
+			children = (
+				FE26E21722DBBA9400959305 /* WeatherManager.swift */,
+			);
+			path = Utilitys;
 			sourceTree = "<group>";
 		};
 		FE59FFC522D7E0F9007F2205 /* Base.lproj */ = {
@@ -98,6 +110,7 @@
 		FE8FC70822D799480076C726 /* ios_vether */ = {
 			isa = PBXGroup;
 			children = (
+				FE26E21622DBBA5200959305 /* Utilitys */,
 				FE59FFC522D7E0F9007F2205 /* Base.lproj */,
 				FE8FC70922D799480076C726 /* AppDelegate.swift */,
 				FEBC210722D7AEB3000A6623 /* GUI */,
@@ -236,6 +249,7 @@
 			files = (
 				FE8FC70C22D799480076C726 /* ViewController.swift in Sources */,
 				FE59FFC022D7D78C007F2205 /* MapTab.swift in Sources */,
+				FE26E21822DBBA9400959305 /* WeatherManager.swift in Sources */,
 				FE8FC70A22D799480076C726 /* AppDelegate.swift in Sources */,
 				FE59FFC222D7D7D8007F2205 /* ListTab.swift in Sources */,
 			);
@@ -386,6 +400,10 @@
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CODE_SIGN_STYLE = Automatic;
 				DEVELOPMENT_TEAM = 3KRK236DU7;
+				FRAMEWORK_SEARCH_PATHS = (
+					"$(inherited)",
+					"$(PROJECT_DIR)",
+				);
 				INFOPLIST_FILE = ios_vether/Info.plist;
 				IPHONEOS_DEPLOYMENT_TARGET = 13.0;
 				LD_RUNPATH_SEARCH_PATHS = (
@@ -406,6 +424,10 @@
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CODE_SIGN_STYLE = Automatic;
 				DEVELOPMENT_TEAM = 3KRK236DU7;
+				FRAMEWORK_SEARCH_PATHS = (
+					"$(inherited)",
+					"$(PROJECT_DIR)",
+				);
 				INFOPLIST_FILE = ios_vether/Info.plist;
 				IPHONEOS_DEPLOYMENT_TARGET = 13.0;
 				LD_RUNPATH_SEARCH_PATHS = (

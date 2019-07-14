@@ -28,6 +28,11 @@
 	<string>provide vether in current location</string>
     <key>NSLocationAlwaysAndWhenInUseUsageDescription</key>
         <string>provide vether in current location</string>
+        <key>NSAppTransportSecurity</key>
+        <dict>
+            <key>NSAllowsArbitraryLoads</key>
+            <true/>
+        </dict>
 	<key>CFBundleDisplayName</key>
 	<string></string>
 	<key>UIRequiredDeviceCapabilities</key>
