@@ -8,6 +8,7 @@
 
 import Foundation
 import CoreLocation
+import MapKit
 import AFNetworking
 
 /// Объект, запрашивающий погоду для ближайших городов
@@ -129,14 +130,40 @@ class WeatherManager {
 /// Удобная структурка для городов
 struct City {
     public let name: String
-    public let rain: String?
-    public let snow: String?
+    public let rain: String
+    public let snow: String
     public let temp: [ParsKeys: Double]
     public let pressure: Double
     public let weather: String
     public let humidity: Double
     public let wind: [ParsKeys: Double]
     public let coor: CLLocationCoordinate2D
+    public var pin: MKPointAnnotation {
+        get {
+            let pin = MKPointAnnotation.init()
+            pin.coordinate = self.coor
+            pin.title = self.name
+            pin.subtitle = self.weather + " " + String(self.temp[ParsKeys.temp]!)
+            pin.isAccessibilityElement = true
+            return pin
+        }
+    }
+    public var weatherMessage: String {
+        get {
+            var weatherMessage = self.weather + " " + String(self.temp[ParsKeys.temp]!) + "deg.\n"
+            if !self.rain.isEmpty && !self.snow.isEmpty {
+                weatherMessage += self.rain + " and " + self.snow + ".\n"
+            } else if !self.rain.isEmpty {
+                weatherMessage += self.rain + ".\n"
+            } else if !self.snow.isEmpty {
+                weatherMessage += self.snow + ".\n"
+            }
+            weatherMessage += "temp from" + String(self.temp[ParsKeys.temp_min]!) + " to " + String(self.temp[ParsKeys.temp_max]!) + ".\n"
+            weatherMessage += "Wind spid " + String(self.wind[ParsKeys.speed]!) + "m/sec\n"
+            weatherMessage += "humidity " + String(self.humidity) + ", pressure" + String(self.pressure) + ".\n"
+            return weatherMessage
+        }
+    }
 }
 
 enum ParsKeys: String {
