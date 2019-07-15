@@ -18,7 +18,6 @@
 		FE8FC71122D7994B0076C726 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = FE8FC71022D7994B0076C726 /* Assets.xcassets */; };
 		FEABB8C022D8786F001F28D3 /* MapKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = FEABB8BF22D8786F001F28D3 /* MapKit.framework */; };
 		FEBC210622D7ADB4000A6623 /* README.md in Resources */ = {isa = PBXBuildFile; fileRef = FEBC210522D7ADB4000A6623 /* README.md */; };
-		FEF4F63522DC742F00CE26C1 /* keys in Resources */ = {isa = PBXBuildFile; fileRef = FEF4F63422DC742F00CE26C1 /* keys */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -38,7 +37,6 @@
 		FE8FC71522D7994B0076C726 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		FEABB8BF22D8786F001F28D3 /* MapKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = MapKit.framework; path = System/Library/Frameworks/MapKit.framework; sourceTree = SDKROOT; };
 		FEBC210522D7ADB4000A6623 /* README.md */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = net.daringfireball.markdown; path = README.md; sourceTree = "<group>"; };
-		FEF4F63422DC742F00CE26C1 /* keys */ = {isa = PBXFileReference; lastKnownFileType = folder; path = keys; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -112,7 +110,6 @@
 		FE8FC70822D799480076C726 /* ios_vether */ = {
 			isa = PBXGroup;
 			children = (
-				FEF4F63422DC742F00CE26C1 /* keys */,
 				FE26E21622DBBA5200959305 /* Utilitys */,
 				FE59FFC522D7E0F9007F2205 /* Base.lproj */,
 				FE8FC70922D799480076C726 /* AppDelegate.swift */,
@@ -198,7 +195,6 @@
 				FE59FFCB22D7E1DB007F2205 /* Localizable.strings in Resources */,
 				FE59FFC822D7E1A3007F2205 /* InfoPlist.strings in Resources */,
 				FE8FC71122D7994B0076C726 /* Assets.xcassets in Resources */,
-				FEF4F63522DC742F00CE26C1 /* keys in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
