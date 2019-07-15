@@ -9,6 +9,7 @@
 import UIKit
 
 class ListTab: UITableViewController {
+        private var dateCellExpanded: Bool = false
 
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -46,7 +47,9 @@ class ListTab: UITableViewController {
         // Configure the cell...
         let appDelegate = UIApplication.shared.delegate as! AppDelegate
         cell!.textLabel?.text = appDelegate.weatherList[indexPath.row].name
-
+        cell?.detailTextLabel?.text = appDelegate.weatherList[indexPath.row].weather
+        cell?.selectionStyle = .blue
+        cell?.focusStyle = .custom
         return cell!
     }
 
