@@ -16,6 +16,7 @@ class MapTab: UIViewController, CLLocationManagerDelegate, MKMapViewDelegate {
     var matchingItems: [MKMapItem] = []
     var currantLocation = CLLocation.init()
     var currentPlaceMark: CLPlacemark?
+    var weathers: [City] = []
 
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -36,17 +37,10 @@ class MapTab: UIViewController, CLLocationManagerDelegate, MKMapViewDelegate {
         self.mapView.isZoomEnabled = true
         self.mapView.isScrollEnabled = true
         if let coor = self.locationManager.location?.coordinate {
-            let regen = MKCoordinateRegion.init(center: coor, span: .init(latitudeDelta: 0.5, longitudeDelta: 0.5))
-            mapView.setCenter(coor, animated: true)
-            self.mapView.setRegion(regen, animated: true)
-            let centerPin = MKPointAnnotation.init()
-            centerPin.coordinate = coor
-            centerPin.title = NSLocalizedString("Change localisation", comment: "")
-            centerPin.isAccessibilityElement = true
-            self.mapView.addAnnotation(centerPin)
-            self.currantLocation = CLLocation.init(latitude: coor.latitude, longitude: coor.longitude)
-                self.searchTowns(location: self.currantLocation)
-    }
+            self.toPlacePins(coor: coor)
+        } else {
+            self.toPlacePins(coor: .init(latitude: 47.3, longitude: 39.74))
+        }
     }
 
     func searchTowns(location: CLLocation){
@@ -58,7 +52,41 @@ class MapTab: UIViewController, CLLocationManagerDelegate, MKMapViewDelegate {
                                                 self.currentPlaceMark = placemarks?[0]
                                             }
         })
-        let sityAdnWeather = WeatherManager.init(center: self.currantLocation.coordinate, numberOfSity: 20)
+    }
+
+    func toPlacePins(coor: CLLocationCoordinate2D) {
+        let regen = MKCoordinateRegion.init(center: coor, span: .init(latitudeDelta: 0.5, longitudeDelta: 0.5))
+        mapView.setCenter(coor, animated: true)
+        self.mapView.setRegion(regen, animated: true)
+        let centerPin = MKPointAnnotation.init()
+        centerPin.coordinate = coor
+        centerPin.title = NSLocalizedString("Change localisation", comment: "")
+        centerPin.isAccessibilityElement = true
+        self.mapView.addAnnotation(centerPin)
+        self.currantLocation = CLLocation.init(latitude: coor.latitude, longitude: coor.longitude)
+        let sityAdnWeather = WeatherManager.init(center: coor, numberOfSity: 20)
+        sityAdnWeather.colBack = {
+            self.weathers = sityAdnWeather.cityList
+            for it in sityAdnWeather.cityList {
+                self.mapView.addAnnotation(it.pin.annotation!)            }
+            let appDelegate = UIApplication.shared.delegate as? AppDelegate
+            appDelegate?.weatherList = sityAdnWeather.cityList
+        }
+        }
+
+    func mapView(_ mapView: MKMapView, didSelect view: MKAnnotationView) {
+        let textView: String = {
+            var str = String()
+            for it in self.weathers {
+                if (it.coor.latitude == view.annotation!.coordinate.latitude) && (it.coor.longitude == view.annotation!.coordinate.longitude) {
+                    str = it.weatherMessage
+                }
+            }
+            return str
+        }()
+        let popUp = UIAlertController.init(title: "Weather ditales", message: textView, preferredStyle: .alert)
+        popUp.addAction(.init(title: "Close", style: .destructive, handler: nil))
+        present(popUp, animated: true)
     }
 }
 

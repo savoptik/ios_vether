@@ -11,6 +11,7 @@ import UIKit
 @UIApplicationMain
 class AppDelegate: UIResponder, UIApplicationDelegate {
 
+    public var weatherList: [City] = []
     var window: UIWindow? = UIWindow.init(frame: UIScreen.main.bounds) // главное окно приложения размерами текущего аппарата
 
     func application(_ application: UIApplication, didFinishLaunchingWithOptions launchOptions: [UIApplication.LaunchOptionsKey: Any]?) -> Bool {
@@ -44,6 +45,5 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
     }
 
 
-    
 }
 

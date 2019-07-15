@@ -14,7 +14,8 @@ import AFNetworking
 /// Объект, запрашивающий погоду для ближайших городов
 class WeatherManager {
     /// Список городов
-    private var cityList: [City] = []
+    var cityList: [City] = []
+    var colBack: (() -> ())?
 
     /// Количество хранящихся городов
     public var count: Int {
@@ -123,6 +124,7 @@ class WeatherManager {
                     NSLog("Не удалось преобразовать данные в первичный словарь")
                 }
             }
+            self.colBack?()
         }, failure: nil)
     }
 }
@@ -138,14 +140,18 @@ struct City {
     public let humidity: Double
     public let wind: [ParsKeys: Double]
     public let coor: CLLocationCoordinate2D
-    public var pin: MKPointAnnotation {
+    public var pin: MKAnnotationView {
         get {
             let pin = MKPointAnnotation.init()
             pin.coordinate = self.coor
             pin.title = self.name
             pin.subtitle = self.weather + " " + String(self.temp[ParsKeys.temp]!)
             pin.isAccessibilityElement = true
-            return pin
+            let pinView = MKAnnotationView.init()
+            pinView.annotation = pin
+            pinView.tintColor = .init(red: 0, green: 255, blue: 0, alpha: 255)
+            pinView.isAccessibilityElement = true
+            return pinView
         }
     }
     public var weatherMessage: String {

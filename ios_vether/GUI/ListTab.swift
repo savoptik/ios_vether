@@ -20,27 +20,35 @@ class ListTab: UITableViewController {
         // self.navigationItem.rightBarButtonItem = self.editButtonItem
     }
 
+    override func viewWillAppear(_ animated: Bool) {
+        self.tableView.reloadData()
+    }
+    
     // MARK: - Table view data source
 
     override func numberOfSections(in tableView: UITableView) -> Int {
         // #warning Incomplete implementation, return the number of sections
-        return 0
+        return 1
     }
 
     override func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         // #warning Incomplete implementation, return the number of rows
-        return 0
+        let appDelegate = UIApplication.shared.delegate as? AppDelegate
+        return appDelegate?.weatherList.count ?? 0
     }
 
-    /*
     override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-        let cell = tableView.dequeueReusableCell(withIdentifier: "reuseIdentifier", for: indexPath)
+        var cell = tableView.dequeueReusableCell(withIdentifier: "reuseIdentifier")//, for: indexPath)
+        if cell == nil {
+            cell = UITableViewCell.init(style: .subtitle, reuseIdentifier:"reuseIdentifier")
+        }
 
         // Configure the cell...
+        let appDelegate = UIApplication.shared.delegate as! AppDelegate
+        cell!.textLabel?.text = appDelegate.weatherList[indexPath.row].name
 
-        return cell
+        return cell!
     }
-    */
 
     /*
     // Override to support conditional editing of the table view.
