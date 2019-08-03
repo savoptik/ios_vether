@@ -37,11 +37,17 @@ class WeatherManager {
     /// - Parameter cnt: Количество запрашиваемых городов
     public init(center coor: CLLocationCoordinate2D, numberOfSity cnt: Int) {
         /// Формирование запроса
+        guard let apiKeyUrl = Bundle.main.url(forResource: "WeatherMapKey", withExtension: "txt", subdirectory: "Keys") else {
+            fatalError("Не удалось получить ключAPI")
+        }
+        var APIKey = try! String.init(contentsOf:  apiKeyUrl)
+        APIKey.remove(at: APIKey.startIndex)
+//        APIKey.remove(at: APIKey.endIndex)
         let request = "http://api.openweathermap.org/data/2.5/find?" +
         "lat=" + String(coor.latitude) +
         "&lon=" + String(coor.longitude) +
         "&cnt=" + String(cnt) +
-        "&appid=" + "89cf20101dbb351566d4bfd30eccc045"
+        "&appid=" + APIKey
         // подготовка менеджера запросов
         let manager = AFHTTPSessionManager()
         manager.responseSerializer = AFJSONResponseSerializer()
