@@ -41,6 +41,9 @@ class WeatherManager {
             fatalError("Не удалось получить ключAPI")
         }
         var APIKey = try! String.init(contentsOf:  apiKeyUrl)
+        if APIKey.isEmpty {
+            fatalError("В файле нет ключа")
+        }
         while let index = APIKey.firstIndex(of: "\n") {
             APIKey.remove(at: index)
         }
