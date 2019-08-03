@@ -65,14 +65,14 @@ class MapTab: UIViewController, CLLocationManagerDelegate, MKMapViewDelegate {
         centerPin.isAccessibilityElement = true
         self.mapView.addAnnotation(centerPin)
         self.currantLocation = CLLocation.init(latitude: coor.latitude, longitude: coor.longitude)
-/*        let sityAdnWeather = WeatherManager.init(center: coor, numberOfSity: 20)
+        let sityAdnWeather = WeatherManager.init(center: coor, numberOfSity: 20)
         sityAdnWeather.colBack = {
             self.weathers = sityAdnWeather.cityList
             for it in sityAdnWeather.cityList {
                 self.mapView.addAnnotation(it.pin.annotation!)            }
             let appDelegate = UIApplication.shared.delegate as? AppDelegate
             appDelegate?.weatherList = sityAdnWeather.cityList
-        } */
+        }
         }
 
     func mapView(_ mapView: MKMapView, didSelect view: MKAnnotationView) {
@@ -94,7 +94,8 @@ class MapTab: UIViewController, CLLocationManagerDelegate, MKMapViewDelegate {
         let point = sender.location(in: self.mapView)
     let x = point.x
     let y = point.y
-        print("касание \(x) \(y)")
+        self.mapView.removeAnnotations(self.mapView.annotations)
+        self.toPlacePins(coor: self.mapView.convert(point, toCoordinateFrom: self.mapView))
     }
 }
 

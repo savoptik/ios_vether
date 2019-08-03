@@ -41,8 +41,9 @@ class WeatherManager {
             fatalError("Не удалось получить ключAPI")
         }
         var APIKey = try! String.init(contentsOf:  apiKeyUrl)
-        APIKey.remove(at: APIKey.startIndex)
-//        APIKey.remove(at: APIKey.endIndex)
+        while let index = APIKey.firstIndex(of: "\n") {
+            APIKey.remove(at: index)
+        }
         let request = "http://api.openweathermap.org/data/2.5/find?" +
         "lat=" + String(coor.latitude) +
         "&lon=" + String(coor.longitude) +
